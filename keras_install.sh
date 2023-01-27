@@ -1,4 +1,26 @@
 #!/usr/bin/env bash
+read -r -p "Are you sure? [y/N] " response
+response=${response,,}    # tolower
+if [[ "$response" =~ ^(yes|y)$ ]]
+then
+    echo "YES"
+else
+    echo "NO"
+fi
+
+read -r -p "Are you sure? [Y/n] " response
+response=${response,,}    # tolower
+if [[ "$response" =~ ^(no|n)$ ]]
+then
+    echo "NO"
+else
+    echo "YES"
+fi
+
+read -p "Enter your name [Richard]: " name
+name=${name:-Richard}
+echo $name
+
 conda create --name=test python=3.10 -y
 conda run -n test conda install cuda-nvcc=11.3.58 cudatoolkit=11.2.2 cudnn=8.1.0 -c conda-forge -c nvidia -y
 conda run -n test pip install tensorflow
